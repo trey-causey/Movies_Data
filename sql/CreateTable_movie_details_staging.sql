@@ -13,29 +13,39 @@ CREATE TABLE movie_details_staging (
     Director NVARCHAR(255),
     Writer NVARCHAR(MAX),
     Actors NVARCHAR(MAX),
-    Plot NVARCHAR(MAX),
-    Language NVARCHAR(255),
-    Country NVARCHAR(255),
-    Awards NVARCHAR(MAX),
-    Poster NVARCHAR(MAX),
-    Ratings NVARCHAR(MAX),
-    Metascore INT,
-    imdbRating FLOAT,
-    imdbVotes NVARCHAR(50),
-    imdbID NVARCHAR(50),
-    Type NVARCHAR(50),
-    DVD DATE,
-    BoxOffice NVARCHAR(255),
-    Production NVARCHAR(MAX),
-    Website NVARCHAR(MAX),
-    Response BIT
+    --Plot NVARCHAR(MAX),
+    --Language NVARCHAR(255),
+    --Country NVARCHAR(255),
+    --Awards NVARCHAR(MAX),
+    --Poster NVARCHAR(MAX),
+    --Ratings NVARCHAR(MAX),
+    --Metascore INT,
+    --imdbRating Float,
+    --imdbVotes NVARCHAR(50),
+    imdbID NVARCHAR(50)
+    --Type NVARCHAR(50),
+   --DVD DATE,
+    --BoxOffice NVARCHAR(255),
+    --Production NVARCHAR(MAX),
+    --Website NVARCHAR(MAX),
+    --Response BIT
 );
 
+--select * from movie_details_staging
+
+INSERT INTO movie_details_staging
+SELECT * 
+FROM OPENROWSET('MSDASQL',
+'Driver={Microsoft Access Text Driver (*.txt, *.csv)};DefaultDir=C:\My\Workspace\Python_Projects\Movies_Data\output_files\;Extensions=csv;',
+'SELECT Title, Year, Rated, Released, Runtime, Genre, Director, Writer, Actors, imdbID FROM [movie_list_detail.csv]')
+
+/**
 BULK INSERT movie_details_staging
-FROM 'C:\My\Workspace\Python_Projects\Movies_Data\output_files\\movie_list_detail.csv'
+FROM 'C:\My\Workspace\Python_Projects\Movies_Data\output_files\movie_list_detail.csv'
 WITH
 (
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
-    FIRSTROW = 2 -- skipping the header row
+    FIRSTROW = 15 -- skipping the header row
 );
+**/

@@ -10,6 +10,7 @@ CREATE TABLE movies_staging (
     type NVARCHAR(50),    -- Assuming type is a short text like 'movie', 'series', etc.
     poster NVARCHAR(MAX)  -- Allowing for long URLs
 );
+--select * from movies_staging
 
 BULK INSERT movies_staging
 FROM 'C:\My\Workspace\Python_Projects\Movies_Data\output_files\\movie_list.csv'
