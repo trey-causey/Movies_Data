@@ -16,7 +16,7 @@ BULK INSERT movies_staging
 FROM 'C:\My\Workspace\Python_Projects\Movies_Data\output_files\\movie_list.csv'
 WITH
 (
-    FIELDTERMINATOR = ',',
+    FIELDTERMINATOR = '|',
     ROWTERMINATOR = '\n',
     FIRSTROW = 2 -- skipping the header row
 );
