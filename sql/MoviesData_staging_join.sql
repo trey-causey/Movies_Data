@@ -1,9 +1,12 @@
   USE Movies_Data_DW
   GO
   
+  TRUNCATE TABLE dbo.Dim_MovieData_staging;
+
   with cte 
   (
-  TITLE,YEAR,IMDB_ID,TYPE,POSTER,RATED,RELEASED,RUNTIME,GENRE,DIRECTOR,WRITER,ACTORS,PLOT,LANGUAGE,COUNTRY,AWARDS,RATINGS,METASCORE,IMDBRATING,IMDBVOTES,DVD,BOXOFFICE,PRODUCTION,WEBSITE
+  TITLE,YEAR,IMDB_ID,TYPE,POSTER,RATED,RELEASED,RUNTIME,GENRE,DIRECTOR,WRITER,ACTORS,PLOT,LANGUAGE,COUNTRY,
+  AWARDS,RATINGS,METASCORE,IMDBRATING,IMDBVOTES,INTERNETMOVIEDATABASE,ROTTENTOMATOES,METACRITIC,DVD,BOXOFFICE,PRODUCTION,WEBSITE
   )
   as (
   SELECT ms.[Title]
@@ -26,8 +29,11 @@
       ,mds.[Metascore]
       ,mds.[imdbRating]
       ,mds.[imdbVotes]
+	  ,mds.[InternetMovieDatabase]
+	  ,mds.[RottenTomatoes]
+	  ,mds.[Metacritic]
       ,mds.[DVD]
-      ,mds.[BoxOffice]
+      ,COALESCE(mds.[BoxOffice],'0')
       ,mds.[Production]
       ,mds.[Website]
 	   from [Movies_Data_DW].[dbo].[movies_staging] ms
@@ -35,5 +41,8 @@
   )
   Insert into dbo.Dim_MovieData_staging
   select * from cte
+
+  UPDATE dbo.Dim_MovieData_staging
+  SET BOXOFFICE = '$0' where BOXOFFICE = 'N/A'
 
   --select * from dbo.Dim_MovieData_staging
