@@ -1,3 +1,22 @@
+# user files
+input_files/
+input_files/Relational_holding/**
+input_files/Holding/**
+
+output_files/
+output_files/Holding/**
+
+# more user files
+power_bi/**
+
+sql/**
+
+src/**
+
+test/**
+
+
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
 # Byte-compiled / optimized / DLL files
