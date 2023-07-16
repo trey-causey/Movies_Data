@@ -9,7 +9,8 @@ output_files/Holding/**
 # more user files
 power_bi/**
 
-sql/**
+sql/MovieData_DB/**
+sql/Unknown_Origin/**
 
 # src/**
 
