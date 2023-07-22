@@ -1,9 +1,10 @@
 # user files
-input_files/**
+input_files/
 input_files/Relational_holding/**
 input_files/Holding/**
+input_files/relational/
 
-output_files/**
+output_files/
 output_files/Holding/**
 
 # more user files
@@ -11,6 +12,7 @@ power_bi/**
 
 sql/MovieData_DB/**
 sql/Unknown_Origin/**
+sql/Staging/**
 
 # src/**
 
